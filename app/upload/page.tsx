@@ -222,29 +222,23 @@ export default function UploadPage() {
               {title.length}/30
             </p>
 
-            <div style={{ display: 'flex', gap: 8, marginTop: 36 }}>
-              <button
-                onClick={() => setStep(3)}
-                style={{
-                  flex: 1, padding: '14px 0',
-                  background: 'transparent', border: '2px solid var(--ink)',
-                  borderRadius: 999, fontSize: 13, fontWeight: 700, color: 'var(--ink)',
-                }}
-              >
-                건너뛰기
-              </button>
-              <button
-                onClick={() => setStep(3)}
-                className="shadow-ink-md"
-                style={{
-                  flex: 2, padding: '14px 0',
-                  background: 'var(--ink)', border: '2.5px solid var(--ink)',
-                  borderRadius: 999, fontSize: 14, fontWeight: 900, color: 'var(--yellow)',
-                }}
-              >
-                다음 →
-              </button>
-            </div>
+            <button
+              onClick={() => setStep(3)}
+              disabled={!title.trim()}
+              className={title.trim() ? 'shadow-ink-md' : ''}
+              style={{
+                width: '100%', marginTop: 36, padding: '16px 0',
+                background: title.trim() ? 'var(--ink)' : 'rgba(26,22,18,0.15)',
+                border: '2.5px solid',
+                borderColor: title.trim() ? 'var(--ink)' : 'rgba(26,22,18,0.2)',
+                borderRadius: 999, fontSize: 15, fontWeight: 900,
+                color: title.trim() ? 'var(--yellow)' : 'rgba(26,22,18,0.35)',
+                transition: 'all 0.2s',
+                cursor: title.trim() ? 'pointer' : 'not-allowed',
+              }}
+            >
+              다음 →
+            </button>
           </div>
         )}
 

@@ -66,19 +66,8 @@ export default function ResultPage() {
   }
 
   function regenerate() {
-    if (!imageUrl) return;
     engineRef.current?.stop();
-    setIsPlaying(false);
-    setElapsed(0);
-    const intent = sessionStorage.getItem('intent') || '';
-    const seedRotate = ['집중', '명상', '잠', '사랑', '해방', '파도'];
-    const newIntent = intent || seedRotate[Math.floor(Math.random() * seedRotate.length)];
-    sessionStorage.setItem('intent', newIntent);
-    getImageBrightness(imageUrl).then((b) => {
-      const p = pickPreset(newIntent, b);
-      setPreset(p);
-      sessionStorage.setItem('currentPreset', JSON.stringify(p));
-    });
+    router.push('/');
   }
 
   function goShare() {
