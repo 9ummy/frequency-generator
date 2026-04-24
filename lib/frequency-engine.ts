@@ -70,24 +70,8 @@ export const PRESETS: FrequencyPreset[] = [
 
 // 의도 텍스트나 시각 파라미터에서 적절한 프리셋 추정
 // 진짜 LLM 호출 대신 키워드 매칭. 해커톤 데모 용도로 충분.
-export function pickPreset(intent?: string, photoBrightness?: number): FrequencyPreset {
-  const txt = (intent || '').toLowerCase();
-
-  if (/잠|수면|밤|새벽|졸/.test(txt)) return PRESETS[3]; // 174Hz delta
-  if (/사랑|관계|마음|연애|친구/.test(txt)) return PRESETS[2]; // 639Hz
-  if (/집중|공부|일|업무/.test(txt)) return PRESETS[5]; // 741Hz
-  if (/해방|자유|털어|벗어/.test(txt)) return PRESETS[4]; // 396Hz
-  if (/명상|차분|평온|이완|쉬|진정/.test(txt)) return PRESETS[0]; // 432Hz
-  if (/파도|바다|물|시원/.test(txt)) return PRESETS[1]; // 528Hz
-
-  // 의도 없을 때 사진 밝기로 분기
-  if (photoBrightness !== undefined) {
-    if (photoBrightness < 80) return PRESETS[3]; // 어두운 사진 → 수면
-    if (photoBrightness > 180) return PRESETS[4]; // 밝은 사진 → 해방
-  }
-
-  // 기본값
-  return PRESETS[0];
+export function pickPreset(_intent?: string, _photoBrightness?: number): FrequencyPreset {
+  return PRESETS[Math.floor(Math.random() * PRESETS.length)];
 }
 
 // 사진의 평균 밝기 추정 (캔버스 샘플링)
